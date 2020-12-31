@@ -1,4 +1,4 @@
-from tkinter import Tk, Button, messagebox, Label, StringVar, OptionMenu, Frame
+from tkinter import Tk, Button, messagebox, Label, StringVar, OptionMenu, Frame, Entry
 
 def setupWindow(width, height):
     window = Tk()
@@ -222,9 +222,30 @@ def addChord():
                        command=lambda: mainMenu())
     backButton = menuButtonStyle(backButton, 10)
     backButton.pack(pady=10)   
-    
 
-width = 400
+def learnChord():
+    clearScreen()
+    title = Label(window, text="Learn a Chord", bg="black", fg="white",
+                  font="Courier 40 bold")
+    title.pack(pady=20)
+    instruction = Label(window, text="Please enter a chord:", bg="black", fg="white",
+                        font="Courier 20 bold")
+    instruction.pack(pady=5)
+
+    chordInput = Entry(window)
+    chordInput.pack(pady=10)
+
+    submitButton = Button(window, text="Learn", width="12", height="1",
+                       command=lambda: learnFunction())
+    submitButton = menuButtonStyle(submitButton, 10)
+    submitButton.pack(pady=10) 
+    
+    backButton = Button(window, text="Back", width="12", height="1",
+                       command=lambda: mainMenu())
+    backButton = menuButtonStyle(backButton, 10)
+    backButton.pack(pady=10)   
+
+width = 450
 height = 560
 window = setupWindow(width, height)
 window.minsize(width, height)
