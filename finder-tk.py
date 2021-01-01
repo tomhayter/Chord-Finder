@@ -144,7 +144,13 @@ def learnChord():
     backButton = Button(window, text="Back", width="12", height="1",
                        command=lambda: mainMenu())
     backButton = menuButtonStyle(backButton, 10)
-    backButton.pack(pady=10)   
+    backButton.pack(pady=10)
+
+def quitSure():
+    sure = messagebox.askyesno("Are you sure?",
+                               "Are you sure you want to quit?")
+    if sure:
+        window.destroy()
 
 width = 450
 height = 560
