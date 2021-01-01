@@ -17,6 +17,21 @@ def menuButtonStyle(widget, size):
     widget.configure(activebackground="white", activeforeground="black")
     return widget
 
+def menuInputFret(noteValue):
+    frets = list(range(0,22))
+
+    noteFrame = Frame(bg="black")
+    initialNote = StringVar(window)
+    initialNote.set("0")
+    note = Label(noteFrame, text=noteValue, bg="black", fg="white",
+              font="Courier 20 bold")
+    note.pack(side="left")
+    noteMenu = OptionMenu(noteFrame, initialNote, *frets)
+    noteMenu["menu"] = menuButtonStyle(noteMenu['menu'], 10)
+    noteMenu = menuButtonStyle(noteMenu, 10)
+    noteMenu.pack(side="right", padx=10)
+    return initialNote, noteFrame
+
 def mainMenu():
     clearScreen()
     title = Label(window, text="Chord Finder", bg="black", fg="white",
@@ -49,76 +64,22 @@ def findChord():
     instruction.pack(pady=5)
     frets = list(range(0,22))
 
-    bigEFrame = Frame(bg="black")
-    initialBigE = StringVar(window)
-    initialBigE.set("0")
-    bigE = Label(bigEFrame, text="E", bg="black", fg="white",
-              font="Courier 20 bold")
-    bigE.pack(side="left")
-    bigEMenu = OptionMenu(bigEFrame, initialBigE, *frets)
-    bigEMenu["menu"] = menuButtonStyle(bigEMenu['menu'], 10)
-    bigEMenu = menuButtonStyle(bigEMenu, 10)
-    bigEMenu.pack(side="right", padx=10)
+    initialBigE, bigEFrame = menuInputFret("E")
     bigEFrame.pack(pady=5)
 
-    aFrame = Frame(bg="black")
-    initialA = StringVar(window)
-    initialA.set("0")
-    a = Label(aFrame, text="A", bg="black", fg="white",
-              font="Courier 20 bold")
-    a.pack(side="left")
-    aMenu = OptionMenu(aFrame, initialA, *frets)
-    aMenu["menu"] = menuButtonStyle(aMenu['menu'], 10)
-    aMenu = menuButtonStyle(aMenu, 10)
-    aMenu.pack(side="right", padx=10)
+    initialA, aFrame = menuInputFret("A")
     aFrame.pack(pady=5)
 
-    dFrame = Frame(bg="black")
-    initialD = StringVar(window)
-    initialD.set("0")
-    d = Label(dFrame, text="D", bg="black", fg="white",
-              font="Courier 20 bold")
-    d.pack(side="left")
-    dMenu = OptionMenu(dFrame, initialD, *frets)
-    dMenu["menu"] = menuButtonStyle(dMenu['menu'], 10)
-    dMenu = menuButtonStyle(dMenu, 10)
-    dMenu.pack(side="right", padx=10)
+    initialD, dFrame = menuInputFret("D")
     dFrame.pack(pady=5)
 
-    gFrame = Frame(bg="black")
-    initialG = StringVar(window)
-    initialG.set("0")
-    g = Label(gFrame, text="G", bg="black", fg="white",
-              font="Courier 20 bold")
-    g.pack(side="left")
-    gMenu = OptionMenu(gFrame, initialG, *frets)
-    gMenu["menu"] = menuButtonStyle(gMenu['menu'], 10)
-    gMenu = menuButtonStyle(gMenu, 10)
-    gMenu.pack(side="right", padx=10)
+    initialG, gFrame = menuInputFret("G")
     gFrame.pack(pady=5)
                    
-    bFrame = Frame(bg="black")
-    initialB = StringVar(window)
-    initialB.set("0")
-    b = Label(bFrame, text="B", bg="black", fg="white",
-              font="Courier 20 bold")
-    b.pack(side="left")
-    bMenu = OptionMenu(bFrame, initialB, *frets)
-    bMenu["menu"] = menuButtonStyle(bMenu['menu'], 10)
-    bMenu = menuButtonStyle(bMenu, 10)
-    bMenu.pack(side="right", padx=10)
+    initialB, bFrame = menuInputFret("B")
     bFrame.pack(pady=5)
 
-    eFrame = Frame(bg="black")
-    initialE = StringVar(window)
-    initialE.set("0")
-    e = Label(eFrame, text="e", bg="black", fg="white",
-              font="Courier 20 bold")
-    e.pack(side="left")
-    eMenu = OptionMenu(eFrame, initialE, *frets)
-    eMenu["menu"] = menuButtonStyle(eMenu['menu'], 10)
-    eMenu = menuButtonStyle(eMenu, 10)
-    eMenu.pack(side="left", padx=10)
+    initialE, eFrame = menuInputFret("e")
     eFrame.pack(pady=5)
 
     findButton = Button(window, text="Find Chord", width="12", height="1",
@@ -139,78 +100,18 @@ def addChord():
     instruction = Label(window, text="Please enter a chord:", bg="black", fg="white",
                         font="Courier 20 bold")
     instruction.pack(pady=5)
-    frets = list(range(0,22))
-
-    bigEFrame = Frame(bg="black")
-    initialBigE = StringVar(window)
-    initialBigE.set("0")
-    bigE = Label(bigEFrame, text="E", bg="black", fg="white",
-                 font="Courier 20 bold")
-    bigE.pack(side="left")
-    bigEMenu = OptionMenu(bigEFrame, initialBigE, *frets)
-    bigEMenu["menu"] = menuButtonStyle(bigEMenu['menu'], 10)
-    bigEMenu = menuButtonStyle(bigEMenu, 10)
-    bigEMenu.pack(side="right", padx=10)
+    
+    initialBigE, bigEFrame = menuInputFret("E")
     bigEFrame.pack(pady=5)
-
-    aFrame = Frame(bg="black")
-    initialA = StringVar(window)
-    initialA.set("0")
-    a = Label(aFrame, text="A", bg="black", fg="white",
-              font="Courier 20 bold")
-    a.pack(side="left")
-    aMenu = OptionMenu(aFrame, initialA, *frets)
-    aMenu["menu"] = menuButtonStyle(aMenu['menu'], 10)
-    aMenu = menuButtonStyle(aMenu, 10)
-    aMenu.pack(side="right", padx=10)
+    initialA, aFrame = menuInputFret("A")
     aFrame.pack(pady=5)
-
-    dFrame = Frame(bg="black")
-    initialD = StringVar(window)
-    initialD.set("0")
-    d = Label(dFrame, text="D", bg="black", fg="white",
-              font="Courier 20 bold")
-    d.pack(side="left")
-    dMenu = OptionMenu(dFrame, initialD, *frets)
-    dMenu["menu"] = menuButtonStyle(dMenu['menu'], 10)
-    dMenu = menuButtonStyle(dMenu, 10)
-    dMenu.pack(side="right", padx=10)
+    initialD, dFrame = menuInputFret("D")
     dFrame.pack(pady=5)
-
-    gFrame = Frame(bg="black")
-    initialG = StringVar(window)
-    initialG.set("0")
-    g = Label(gFrame, text="G", bg="black", fg="white",
-              font="Courier 20 bold")
-    g.pack(side="left")
-    gMenu = OptionMenu(gFrame, initialG, *frets)
-    gMenu["menu"] = menuButtonStyle(gMenu['menu'], 10)
-    gMenu = menuButtonStyle(gMenu, 10)
-    gMenu.pack(side="right", padx=10)
+    initialG, gFrame = menuInputFret("G")
     gFrame.pack(pady=5)
-                   
-    bFrame = Frame(bg="black")
-    initialB = StringVar(window)
-    initialB.set("0")
-    b = Label(bFrame, text="B", bg="black", fg="white",
-              font="Courier 20 bold")
-    b.pack(side="left")
-    bMenu = OptionMenu(bFrame, initialB, *frets)
-    bMenu["menu"] = menuButtonStyle(bMenu['menu'], 10)
-    bMenu = menuButtonStyle(bMenu, 10)
-    bMenu.pack(side="right", padx=10)
+    initialB, bFrame = menuInputFret("B")
     bFrame.pack(pady=5)
-
-    eFrame = Frame(bg="black")
-    initialE = StringVar(window)
-    initialE.set("0")
-    e = Label(eFrame, text="e", bg="black", fg="white",
-              font="Courier 20 bold")
-    e.pack(side="left")
-    eMenu = OptionMenu(eFrame, initialE, *frets)
-    eMenu["menu"] = menuButtonStyle(eMenu['menu'], 10)
-    eMenu = menuButtonStyle(eMenu, 10)
-    eMenu.pack(side="left", padx=10)
+    initialE, eFrame = menuInputFret("e")
     eFrame.pack(pady=5)
 
     addButton = Button(window, text="Add Chord", width="12", height="1",
