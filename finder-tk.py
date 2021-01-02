@@ -1,4 +1,5 @@
 from tkinter import Tk, Button, messagebox, Label, StringVar, OptionMenu, Frame, Entry
+import finderFunctionality as func
 
 def setupWindow(width, height):
     window = Tk()
@@ -18,7 +19,9 @@ def menuButtonStyle(widget, size):
     return widget
 
 def menuInputFret(noteValue):
-    frets = list(range(0,22))
+    frets = ["x"]
+    for i in range(0,22):
+        frets.append(i)
 
     noteFrame = Frame(bg="black")
     initialNote = StringVar(window)
@@ -64,26 +67,21 @@ def findChord():
     instruction.pack(pady=5)
     frets = list(range(0,22))
 
-    initialBigE, bigEFrame = menuInputFret("E")
+    bigEVal, bigEFrame = menuInputFret("E")
     bigEFrame.pack(pady=5)
-
-    initialA, aFrame = menuInputFret("A")
+    aVal, aFrame = menuInputFret("A")
     aFrame.pack(pady=5)
-
-    initialD, dFrame = menuInputFret("D")
+    dVal, dFrame = menuInputFret("D")
     dFrame.pack(pady=5)
-
-    initialG, gFrame = menuInputFret("G")
-    gFrame.pack(pady=5)
-                   
-    initialB, bFrame = menuInputFret("B")
+    gVal, gFrame = menuInputFret("G")
+    gFrame.pack(pady=5)      
+    bVal, bFrame = menuInputFret("B")
     bFrame.pack(pady=5)
-
-    initialE, eFrame = menuInputFret("e")
+    eVal, eFrame = menuInputFret("e")
     eFrame.pack(pady=5)
 
     findButton = Button(window, text="Find Chord", width="12", height="1",
-                        command=lambda: findFunction())
+                        command=lambda: func.getChord([bigEVal.get(), aVal.get(), dVal.get(), gVal.get(), bVal.get(), eVal.get()]))
     findButton = menuButtonStyle(findButton, 10)
     findButton.pack(pady=10)
     
@@ -101,21 +99,29 @@ def addChord():
                         font="Courier 20 bold")
     instruction.pack(pady=5)
     
-    initialBigE, bigEFrame = menuInputFret("E")
+    bigEVal, bigEFrame = menuInputFret("E")
     bigEFrame.pack(pady=5)
-    initialA, aFrame = menuInputFret("A")
+    aVal, aFrame = menuInputFret("A")
     aFrame.pack(pady=5)
-    initialD, dFrame = menuInputFret("D")
+    dVal, dFrame = menuInputFret("D")
     dFrame.pack(pady=5)
-    initialG, gFrame = menuInputFret("G")
-    gFrame.pack(pady=5)
-    initialB, bFrame = menuInputFret("B")
+    gVal, gFrame = menuInputFret("G")
+    gFrame.pack(pady=5)      
+    bVal, bFrame = menuInputFret("B")
     bFrame.pack(pady=5)
-    initialE, eFrame = menuInputFret("e")
+    eVal, eFrame = menuInputFret("e")
     eFrame.pack(pady=5)
 
+    nameFrame = Frame(bg="black")
+    nameLabel = Label(nameFrame, text="Name", bg="black", fg="white",
+                      font="Courier 20 bold")
+    nameLabel.pack(side="left")
+    name = Entry(nameFrame)
+    name.pack(side="right", padx=10)
+    nameFrame.pack(pady=5)
+    
     addButton = Button(window, text="Add Chord", width="12", height="1",
-                       command=lambda: addFunction())
+                       command=lambda: func.inputChord([bigEVal.get(), aVal.get(), dVal.get(), gVal.get(), bVal.get(), eVal.get(), name]))
     addButton = menuButtonStyle(addButton, 10)
     addButton.pack(pady=10)
     
@@ -137,7 +143,7 @@ def learnChord():
     chordInput.pack(pady=10)
 
     submitButton = Button(window, text="Learn", width="12", height="1",
-                       command=lambda: learnFunction())
+                       command=lambda: func.displayChord(chordInput.get()))
     submitButton = menuButtonStyle(submitButton, 10)
     submitButton.pack(pady=10) 
     
@@ -153,7 +159,7 @@ def quitSure():
         window.destroy()
 
 width = 450
-height = 560
+height = 580
 window = setupWindow(width, height)
 window.minsize(width, height)
 mainMenu()
