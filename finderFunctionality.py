@@ -26,22 +26,9 @@ def inputChord(chord):
     add = open("chords.txt","a")
     add.write(my_chord + "\n")
     add.close()
-    menu()
-
-
-def getChord(myChord):
-    matchingChord, possibilities = checkChords(myChord)
-    if not matchingChord:
-        print("\nThis chord does not match a chord in our dictionary. Our closest matches are: ")
-        for chord in possibilities:
-            print(chord[0])
-    else:
-        print("\nYour chord is " + matchingChord)
-
 
 def checkChords(myChord):
     readFile()
-    print(myChord)
     possibilities = [["", 0]]
     for chord in chords:
         score = 0
@@ -51,7 +38,7 @@ def checkChords(myChord):
                 score += 1
             i += 1
         if score == 6:
-            return chord[6], []
+            return True, chord[6]
             break
         elif score > possibilities[0][1]:
             possibilities = [[chord[6], score]]

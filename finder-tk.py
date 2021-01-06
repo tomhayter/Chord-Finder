@@ -1,4 +1,4 @@
-from tkinter import Tk, Button, messagebox, Label, StringVar, OptionMenu, Frame, Entry
+from tkinter import Tk, Button, messagebox, Label, StringVar, OptionMenu, Frame, Entry, Message
 import finderFunctionality as func
 
 def setupWindow(width, height):
@@ -57,6 +57,32 @@ def mainMenu():
     quitButton = menuButtonStyle(quitButton, 20)
     quitButton.pack(pady=10)
 
+def find(chord):
+    clearScreen()
+    match, possibilities = func.checkChords(chord)
+    print(str(possibilities))
+    title = Label(window, text="Find a Chord", bg="black", fg="white",
+                  font="Courier 40 bold")
+    title.pack(pady=20)
+    if match:
+        result = Label(window, text="Your chord is "+ possibilities[0], bg="black", fg="white",
+                       font="Courier 20 bold")
+    else:
+        names = ""
+        for chrd in possibilities:
+            names = names + chrd[0] + " "
+        names = names + "."
+        result = Message(window, text="We could not find your chord in our dictionary. Our closest matches are: " + names,
+                         bg="black", fg="white", font="Courier 20 bold")
+    result.pack(pady=10)
+    backButton = Button(window, text="Back", width="12", height="1",
+                        command=lambda: mainMenu())
+    backButton = menuButtonStyle(backButton, 10)
+    backButton.pack(pady=10)
+    
+    
+
+
 def findChord():
     clearScreen()
     title = Label(window, text="Find a Chord", bg="black", fg="white",
@@ -81,7 +107,7 @@ def findChord():
     eFrame.pack(pady=5)
 
     findButton = Button(window, text="Find Chord", width="12", height="1",
-                        command=lambda: func.getChord([bigEVal.get(), aVal.get(), dVal.get(), gVal.get(), bVal.get(), eVal.get()]))
+                        command=lambda: find([bigEVal.get(), aVal.get(), dVal.get(), gVal.get(), bVal.get(), eVal.get()]))
     findButton = menuButtonStyle(findButton, 10)
     findButton.pack(pady=10)
     
