@@ -21,8 +21,8 @@ def writeFile():
         f.write(text + "\n")
     f.close()
 
-def inputChord(chord):
-    my_chord = (chord[0] + "|" + chord[1] + "|" + chord[2] + "|"+ chord[3] + "|" + chord[4] + "|"+ chord[5] + "|" + chord[6])
+def inputChord(chord, name):
+    my_chord = (chord[0] + "|" + chord[1] + "|" + chord[2] + "|"+ chord[3] + "|" + chord[4] + "|"+ chord[5] + "|" + name)
     add = open("chords.txt","a")
     add.write(my_chord + "\n")
     add.close()

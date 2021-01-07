@@ -60,7 +60,6 @@ def mainMenu():
 def find(chord):
     clearScreen()
     match, possibilities = func.checkChords(chord)
-    print(str(possibilities))
     title = Label(window, text="Find a Chord", bg="black", fg="white",
                   font="Courier 40 bold")
     title.pack(pady=20)
@@ -79,9 +78,6 @@ def find(chord):
                         command=lambda: mainMenu())
     backButton = menuButtonStyle(backButton, 10)
     backButton.pack(pady=10)
-    
-    
-
 
 def findChord():
     clearScreen()
@@ -116,6 +112,18 @@ def findChord():
     backButton = menuButtonStyle(backButton, 10)
     backButton.pack(pady=10)
 
+def add(chord, name):
+    clearScreen()
+    func.inputChord(chord, name)
+    title = Label(window, text="Chord Added", bg="black", fg="white",
+                  font="Courier 40 bold")
+    title.pack(pady=20)
+    backButton = Button(window, text="Back", width="12", height="1",
+                       command=lambda: mainMenu())
+    backButton = menuButtonStyle(backButton, 10)
+    backButton.pack(pady=10)
+    
+
 def addChord():
     clearScreen()
     title = Label(window, text="Add a Chord", bg="black", fg="white",
@@ -147,7 +155,7 @@ def addChord():
     nameFrame.pack(pady=5)
     
     addButton = Button(window, text="Add Chord", width="12", height="1",
-                       command=lambda: func.inputChord([bigEVal.get(), aVal.get(), dVal.get(), gVal.get(), bVal.get(), eVal.get(), name]))
+                       command=lambda: add([bigEVal.get(), aVal.get(), dVal.get(), gVal.get(), bVal.get(), eVal.get()], name.get()))
     addButton = menuButtonStyle(addButton, 10)
     addButton.pack(pady=10)
     
