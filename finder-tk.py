@@ -178,12 +178,12 @@ def learn(name):
         chd = Label(window, text=name+":", bg="black", fg="white",
                     font="Courier 20 bold")
         chd.pack(pady=10)
-        strings = ["E|--","A|--","D|--","G|--","B|--","e|--"]
+        strings = ["E|---","A|--","D|--","G|--","B|--","e|--"]
         for i in range(6):
             for chord in shapes:
-                strings[i] = strings[i] + chord[i] + "--"
+                strings[i] = strings[i] + chord[i] + "---"
             label = Label(window, text=strings[i], bg="black", fg="white",
-                          font="Courier 10 bold")
+                          font="Courier 15 bold")
             label.pack(pady=5)
     backButton = Button(window, text="Back", width="12", height="1",
                        command=lambda: mainMenu())
