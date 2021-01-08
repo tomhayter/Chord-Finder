@@ -164,6 +164,32 @@ def addChord():
     backButton = menuButtonStyle(backButton, 10)
     backButton.pack(pady=10)   
 
+def learn(name):
+    clearScreen()
+    shapes = func.getChord(name)
+    title = Label(window, text="Learn a Chord", bg="black", fg="white",
+                  font="Courier 40 bold")
+    title.pack(pady=20)
+    if shapes == []:
+        notFound = Message(window, text="Sorry, we could not find that chord.",
+                           bg="black", fg="white", font="Courier 20 bold")
+        notFound.pack(pady=10)
+    else:
+        chd = Label(window, text=name+":", bg="black", fg="white",
+                    font="Courier 20 bold")
+        chd.pack(pady=10)
+        strings = ["E|--","A|--","D|--","G|--","B|--","e|--"]
+        for i in range(6):
+            for chord in shapes:
+                strings[i] = strings[i] + chord[i] + "--"
+            label = Label(window, text=strings[i], bg="black", fg="white",
+                          font="Courier 10 bold")
+            label.pack(pady=5)
+    backButton = Button(window, text="Back", width="12", height="1",
+                       command=lambda: mainMenu())
+    backButton = menuButtonStyle(backButton, 10)
+    backButton.pack(pady=10)
+
 def learnChord():
     clearScreen()
     title = Label(window, text="Learn a Chord", bg="black", fg="white",
@@ -177,7 +203,7 @@ def learnChord():
     chordInput.pack(pady=10)
 
     submitButton = Button(window, text="Learn", width="12", height="1",
-                       command=lambda: func.displayChord(chordInput.get()))
+                       command=lambda: learn(chordInput.get()))
     submitButton = menuButtonStyle(submitButton, 10)
     submitButton.pack(pady=10) 
     

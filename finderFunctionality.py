@@ -47,21 +47,12 @@ def checkChords(myChord):
     return False, possibilities
 
 
-def displayChord(query):
+def getChord(query):
     readFile()
     shapes = []
     for chord in chords:
         if chord[6] == query:
             shapes.append(chord)
-    if shapes == []:
-        print("Sorry, we couldn't find that chord.")
-    else:
-        for chord in shapes:
-            print("\ne|--" + chord[5] + "--")
-            print("B|--" + chord[4] + "--")
-            print("G|--" + chord[3] + "--")
-            print("D|--" + chord[2] + "--")
-            print("A|--" + chord[1] + "--")
-            print("E|--" + chord[0] + "--\n")
+    return shapes
 
 
